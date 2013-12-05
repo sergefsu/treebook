@@ -6,7 +6,7 @@
 
 <% @statuses.each do |status| %>
 <div class="status">
-  <strong><%= status.name %></strong>
+  <strong><%= link_to('vote for this post!', vote_up_status_path(@status), :method => :status) %></strong>
   <p><%= status.content %><p>
     <div ="meta">
       <%= link_to time_ago_in_words(status.created_at) + " ago", status %>

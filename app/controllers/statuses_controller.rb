@@ -1,6 +1,26 @@
 class StatusesController < ApplicationController
   # GET /statuses
   # GET /statuses.json
+
+  def vote_up
+    begin
+      current_user.vote_for(@status = Status.find(params[:id]))
+      render :nothing => true, :status => 200
+    rescue ActiveRecord::RecordInvalid
+      render :nothing => true, :status => 404
+  end
+  end
+    def poll_winners
+      @posts = Post.tally(
+    {   :at_least => 1,
+      :at_most => 10000,
+      :limit => 10,
+      :order => 'vote_count desc'
+    })
+ end
+
+
+
   def index
     @statuses = Status.all
 
