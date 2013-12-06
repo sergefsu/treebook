@@ -1,5 +1,5 @@
 <div class="page-header">
-  <h3>Constructive Critisism for Local Businesses</h3>
+  <h3>Constructive Kritisism for Local Businesses</h3>
   <h5>Help your community improve with your valuable imput</h5>
   <h5>Add your Krit and vote on others</h5>
 
@@ -11,16 +11,15 @@
 </p>
 <% @statuses.each do |status| %>
 <div class="status">
-  <strong>business name</strong>
+  <%= status.content %>
   
   <p><strong><%= pluralize status.reputation_for(:votes).to_i, "vote" %></strong> |
     <%= link_to "up", vote_status_path(status, type: "up"), method: "post", class: "btn btn-success" %> |
     <%= link_to "down", vote_status_path(status, type: "down"), method: "post", class: "btn btn-danger" %> |
-  <%= status.content %></p>
+    about:<strong>business name</strong> <%#= status.user.profile_name %></p>
 
 
     <div ="meta">
-      <%= status.user.profile_name %>:
       <%= link_to time_ago_in_words(status.created_at) + " ago", status %>
       <span class="admin">
         | <%= link_to "Edit", edit_status_path(status) %> |
