@@ -10,8 +10,8 @@
   <%= @status.content %>
 </p>
 
-  <p><%= link_to "up", vote_status_path(@status, type: "up"), method: "post" %><p>
-  <p><%= link_to "down", vote_status_path(@status, type: "down"), method: "post" %><p>
+  <p><%#= link_to "up", vote_status_path(@status, type: "up"), method: "post" %><p>
+  <p><%#= link_to "down", vote_status_path(@status, type: "down"), method: "post" %><p>
 
 
 <%= link_to 'Edit', edit_status_path(@status) %> |
