@@ -1,15 +1,5 @@
 class StatusesController < ApplicationController
-  # GET /statuses
-  # GET /statuses.json
-
-  def vote
-    value = params[:type] == "up" ? 1 : -1
-    @status = Status.find(params[:id])
-    @status.add_or_update_evaluation(:votes, value, current_user)
-    redirect_to :back, notice: "Thank you for helping local business!"
-  end
-
-
+  
   def index
     @statuses = Status.all
 
@@ -19,14 +9,6 @@ class StatusesController < ApplicationController
     end
   end
 
-=begin
-  def index
-    @status = status.find_with_reputation(:votes, :all, order: "votes desc" )
-  end
-=end
-
-  # GET /statuses/1
-  # GET /statuses/1.json
   def show
     @status = Status.find(params[:id])
 
@@ -34,6 +16,17 @@ class StatusesController < ApplicationController
       format.html # show.html.erb
       format.json { render json: @status }
     end
+  end
+
+ # before_filter :authenticate_user! only [:new]
+  # GET /statuses
+  # GET /statuses.json
+
+  def vote
+    value = params[:type] == "up" ? 1 : -1
+    @status = Status.find(params[:id])
+    @status.add_or_update_evaluation(:votes, value, current_user)
+    redirect_to :back, notice: "Thank you for helping local business!"
   end
 
   # GET /statuses/new

@@ -2,9 +2,9 @@
   <h3>Constructive Kritisism for Local Businesses</h3>
    
  <div class="page-header">
-  <div>
+  <div class="indexSubHeader" >
     <p>Improve your communiy!</p>
-    <h5>Log in to Vote</h5>
+    <h5><%= link_to "Log in to Vote", new_user_session_path %></h5>
   </div>
 </div>
 
@@ -15,10 +15,16 @@
 <div class="status">
   <%= status.content %>
   
-  <p><strong><%= pluralize status.reputation_for(:votes).to_i, "vote" %></strong> |
+  <p>
+    <strong>
+      <%= pluralize status.reputation_for(:votes).to_i, "vote" %>
+    </strong> |
+
     <%= link_to "up", vote_status_path(status, type: "up"), method: "post", class: "btn btn-success" %> |
     <%= link_to "down", vote_status_path(status, type: "down"), method: "post", class: "btn btn-danger" %> |
-    about:<strong>business name</strong> <%#= status.user.profile_name %></p>
+    
+    about:<strong><%= status.business_name != nil ? status.business_name : "business not specified" %></strong> 
+  </p>
 
 
     <div ="meta">

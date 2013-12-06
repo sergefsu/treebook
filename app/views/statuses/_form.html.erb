@@ -12,6 +12,7 @@
   <% end %>
 
   <%= f.input :user_id, collection: User.all, label_method: :first_name %>
+  <%= f.input :business_name %>
   <%= f.input :content %>
   <div class="form-actions">
     <%= f.button :submit %>
