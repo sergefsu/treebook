@@ -2,9 +2,7 @@ Treebook::Application.routes.draw do
   devise_for :users
 
   resources :statuses do
-    member do
-      get :vote_up
-    end 
+    member { post :vote }
   end
 
  

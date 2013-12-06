@@ -17,4 +17,11 @@ class User < ActiveRecord::Base
 
   acts_as_voter
 
+  has_many :statuses
+  has_many :evaluations, class_name: "RSEvaluation", as: :source
+
+  has_reputation :votes, source: {reputation: :votes, of: :statuses}, aggregated_by: :sum
+
+  
+
 end

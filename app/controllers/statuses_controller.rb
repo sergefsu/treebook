@@ -2,22 +2,13 @@ class StatusesController < ApplicationController
   # GET /statuses
   # GET /statuses.json
 
-  def vote_up
-    begin
-      current_user.vote_for(@status = Status.find(params[:id]))
-      render :nothing => true, :status => 200
-    rescue ActiveRecord::RecordInvalid
-      render :nothing => true, :status => 404
-    end
+  def vote
+    value = params[:type] == "up" ? 1 : -1
+    @status = Status.find(params[:id])
+    @status.add_or_update_evaluation(:votes, value, current_user)
+    redirect_to :back, notice: "Thank you for helping local business!"
   end
 
-  def vote_for_article
-      @status = Status.find(params[:id])
-      current_user.vote_for(@status)
-      respond_to do |format|
-        format.js
-      end
-  end
 
   def index
     @statuses = Status.all
@@ -27,6 +18,12 @@ class StatusesController < ApplicationController
       format.json { render json: @statuses }
     end
   end
+
+=begin
+  def index
+    @status = status.find_with_reputation(:votes, :all, order: "votes desc" )
+  end
+=end
 
   # GET /statuses/1
   # GET /statuses/1.json
