@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '1.9.3'
+#ruby '1.9.3'
 
 gem 'rails', '3.2.13'
 
@@ -12,7 +12,7 @@ end
 
 group :production do
 	gem 'pg'
-	gem 'rails_12factor'
+	#gem 'rails_12factor'
 end
 
 gem 'devise'
