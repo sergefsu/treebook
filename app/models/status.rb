@@ -7,4 +7,7 @@ class Status < ActiveRecord::Base
 
   validates :user_id, presence: true
 
+  validates :business_name, presence: true,
+                    length: { minimum: 2 }
+
 end
