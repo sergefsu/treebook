@@ -9,7 +9,7 @@
 </div>
 
 <p class="new_post">
-<%= link_to "Post a New Krit", new_status_path, class: "btn btn-info" %>
+<%= link_to "Post a New Krit", new_status_path, class: "btn btn-info" %><br>
 </p>
 <% @statuses.each do |status| %>
 <div class="status">
@@ -23,7 +23,7 @@
     <%= link_to "up", vote_status_path(status, type: "up"), method: "post", class: "btn btn-success" %> |
     <%= link_to "down", vote_status_path(status, type: "down"), method: "post", class: "btn btn-danger" %> |
     
-    about:<strong><%= status.business_name != nil ? status.business_name : "business not specified" %></strong> 
+    krit for:<strong><%= status.business_name != nil ? status.business_name : "business not specified" %></strong> 
   </p>
 
 
