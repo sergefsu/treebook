@@ -15,19 +15,25 @@
 <p class="new_post">
 <%= link_to "Post a New Krit", new_status_path, class: "btn btn-inverse" %><br>
 </p>
+
 <% @statuses.each do |status| %>
+
 <div class="status">
+  <div style="background-color:#71BEBF; border-radius:10px; padding:5px;">
+  <strong>
   <%= status.content %>
+  </strong>
+  </div>
   
   <p>
     <strong>
       <%= pluralize status.reputation_for(:votes).to_i, "vote" %>
     </strong> |
 
-    <%= link_to "up", vote_status_path(status, type: "up"), method: "post", class: "btn btn-success" %> |
-    <%= link_to "down", vote_status_path(status, type: "down"), method: "post", class: "btn btn-danger" %> |
+    <%= link_to "up", vote_status_path(status, type: "up"), method: "post", class: "btn btn-success" %> 
+    <%#= link_to "down", vote_status_path(status, type: "down"), method: "post", class: "btn btn-danger" %> 
     
-    krit for:<strong><%= status.business_name != nil ? status.business_name : "business not specified" %></strong> 
+    krit for: <em><%= status.business_name != nil ? status.business_name : "business not specified" %></em> 
   </p>
 
 
